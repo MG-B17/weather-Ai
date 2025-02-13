@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:weatherai/core/widget/errorDialog.dart';
 import 'package:weatherai/features/auth/Sing%20Up/presentation/widget/cmWidget.dart';
 import 'package:weatherai/features/home/Home.dart';
@@ -18,7 +19,7 @@ import 'package:weatherai/core/di/di.dart' as di;
 
 import '../widget/SingUpStatment.dart';
 
-class CompleteSingUp extends StatelessWidget {
+class CompleteSingUp extends StatefulWidget {
 
   final String userName;
   final String email;
@@ -26,6 +27,11 @@ class CompleteSingUp extends StatelessWidget {
 
   CompleteSingUp({required this.userName, required this.email,required this.password});
 
+  @override
+  State<CompleteSingUp> createState() => _CompleteSingUpState();
+}
+
+class _CompleteSingUpState extends State<CompleteSingUp> {
   var birthDateController = TextEditingController();
 
   var heightController = TextEditingController();
@@ -80,7 +86,21 @@ class CompleteSingUp extends StatelessWidget {
                           CustomTextForm(
                               name: "Birth Date",
                               controller:birthDateController ,
-                              keyboardType: TextInputType.datetime,
+                              keyboardType: TextInputType.none,
+                              onTap: (){
+                                showDatePicker(
+                                    context: context,
+                                  firstDate: DateTime(1960),
+                                  lastDate:DateTime(2008),
+                                  initialDate: DateTime(2000)
+                                ).then((value){
+                                  setState(() {
+                                    final f = new DateFormat.yMMMMd();
+                                    birthDateController.text= f.format(value!);
+                                    print(birthDateController.text);
+                                  });
+                                });
+                              },
                               onFiledSubmitted: (value){},
                               validation:(value){
                                 if(value!.isEmpty){
@@ -128,9 +148,9 @@ class CompleteSingUp extends StatelessWidget {
                               onTap: (){
                                 if(formKey.currentState!.validate()){
                                   SingUpCubit.of(context).singUp(
-                                      userName: userName,
-                                      email: email,
-                                      password: password,
+                                      userName: widget.userName,
+                                      email: widget.email,
+                                      password: widget.password,
                                       birthDate: birthDateController.text,
                                       height: heightController.text,
                                       weight: weightController.text,

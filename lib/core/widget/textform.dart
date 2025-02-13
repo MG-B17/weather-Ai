@@ -23,6 +23,7 @@ class CustomTextForm extends StatelessWidget {
    required this.onFiledSubmitted,
    required this.validation,
     this.readOnly = false,
+    this.onTap
   });
 
   @override
