@@ -13,3 +13,5 @@ class ExistedAccountFailure extends Failure {}
 class NoUserFailure extends Failure {}
 
 class WrongPasswordFailure extends Failure {}
+
+class LocationDisabledFailure extends Failure{}

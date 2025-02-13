@@ -8,28 +8,27 @@ class SingUpStatement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding:EdgeInsets.only(bottom: 20.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
+    return Stack(
+      alignment: Alignment.bottomLeft,
+      children: [
+        Image(
+          image:const AssetImage("assets/images/Auth.png"),
+          width: double.infinity,
+          height: 250.h,
+          fit: BoxFit.fill,
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal:15.w,vertical: 20.h),
+          child: Text(
             Strings.singUp,
             style: TextStyle(
-                fontSize: 25.sp,
+                fontSize: 30.sp,
                 fontWeight: FontWeight.bold,
                 color: ColorManager.textColor
             ),
           ),
-          Text(
-            Strings.singUpStatement,
-            style: TextStyle(
-                color: ColorManager.textColor!.withOpacity(.8),
-                fontSize: 18
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

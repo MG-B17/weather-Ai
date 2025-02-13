@@ -10,3 +10,5 @@ class SingUpFail extends SingUpStates{
   final String message;
   SingUpFail({required this.message});
 }
+
+class ChangePassword extends SingUpStates{}

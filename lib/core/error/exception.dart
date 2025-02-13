@@ -8,6 +8,8 @@ class ExistedAccountException implements Exception {}
 
 class NoUserException implements Exception {}
 
+class LocationDisabled  implements Exception{}
+
 class WrongPasswordException implements Exception {}
 
 class TooManyRequestsException implements Exception {}

@@ -32,6 +32,12 @@ class Strings{
 
   static String birthDateValidate= "Please Enter your Birth Date";
 
+  static String nextForecast="Next Forecast";
+
+  static String min= "Min";
+
+  static String max="Max";
+
 }
 
 
@@ -51,4 +57,6 @@ class ErrorMessage{
   static String WRONG_PASSWORD_FAILURE_MESSAGE ="Incorrect password, please try again.";
 
   static String TOO_MANY_REQUESTS_FAILURE_MESSAGE ="Too many requests, please try again later.";
+
+  static String PleaseEnableLoCation = "Please Enable Location ";
 }

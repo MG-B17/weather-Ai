@@ -18,7 +18,7 @@ class ForgetPassword extends StatelessWidget {
               child: Text(
                 Strings.forgetPassword,
                 style: TextStyle(
-                    color:ColorManager.secondaryColor,
+                    color:ColorManager.textColor,
                     fontSize: 15.sp
                 ),
               )

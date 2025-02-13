@@ -14,6 +14,8 @@ class CustomTextForm extends StatelessWidget {
    void Function()? onTap;
    bool hideInput;
    bool readOnly;
+   IconData? preFixICon;
+   IconData? sufFixICon;
 
   CustomTextForm({
    required this.name,
@@ -23,12 +25,16 @@ class CustomTextForm extends StatelessWidget {
    required this.onFiledSubmitted,
    required this.validation,
     this.readOnly = false,
+    this.onTap,
+    required this.preFixICon,
+    this.sufFixICon,
+
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:EdgeInsets.symmetric(vertical:5.h),
+      padding:EdgeInsets.symmetric(vertical:8.h),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -41,37 +47,48 @@ class CustomTextForm extends StatelessWidget {
           ),
           TextFormField(
             style: TextStyle(
-                color: ColorManager.textColor,
+                color: ColorManager.secondaryColor,
                 fontSize: 16.sp
             ),
+
             decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.r),
-                  borderSide: BorderSide(
-                    color:  Colors.white.withOpacity(.1),
-                  )
+              prefixIcon: Icon(
+                preFixICon,
+                color: ColorManager.secondaryColor,
               ),
-              focusedBorder:OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.r),
+              suffixIcon:IconButton(
+                onPressed: onTap,
+                icon: Icon(
+                  sufFixICon,
+                  color: ColorManager.secondaryColor,
+                ),
+              ),
+              filled: true,
+              fillColor: Colors.white,
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5.r),
+                borderSide: BorderSide(
+                  color: Colors.white
+                )
+              ),
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.r),
                   borderSide: BorderSide(
-                    color: ColorManager.textColor!,
+                      color: ColorManager.secondaryColor
                   )
               ),
               errorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.r),
+                  borderRadius: BorderRadius.circular(5.r),
                   borderSide: BorderSide(
-                    color: ColorManager.errorColor,
+                      color: ColorManager.errorColor
                   )
-              ) ,
-              filled: true,
-              fillColor: Colors.white.withOpacity(.1),
+              )
             ),
             validator: validation,
             controller: controller,
-            cursorColor: ColorManager.textColor,
+            cursorColor: ColorManager.secondaryColor,
             keyboardType: keyboardType,
             onFieldSubmitted: onFiledSubmitted,
-            onTap: onTap,
             obscureText: hideInput,
             readOnly: readOnly,
           ),

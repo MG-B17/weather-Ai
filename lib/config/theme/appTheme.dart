@@ -9,6 +9,7 @@ ThemeData appTheme(){
     scaffoldBackgroundColor: ColorManager.primaryColor,
     appBarTheme: AppBarTheme(
       backgroundColor: ColorManager.primaryColor
-    )
+    ),
+    fontFamily: "Kanit"
   );
 }

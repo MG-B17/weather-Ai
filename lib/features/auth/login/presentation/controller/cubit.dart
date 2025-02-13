@@ -28,4 +28,12 @@ class LoginCubit extends Cubit<LoginStates>{
            (_){emit(LoginSuccess());}
    );
   }
+
+
+  bool hidePassword=true;
+
+  void changePassword(){
+    hidePassword=!hidePassword;
+    emit(ChangePasswordIcon());
+  }
 }

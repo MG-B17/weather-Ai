@@ -11,3 +11,5 @@ class LoginFail extends LoginStates{
 
   LoginFail({required this.message});
 }
+
+class ChangePasswordIcon extends LoginStates{}

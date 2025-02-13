@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:weatherai/core/di/di.dart'as di;
+import 'package:weatherai/core/helpers/DioHelper/dioHelper.dart';
 import 'package:weatherai/core/helpers/cacheHelper.dart';
 import 'package:weatherai/core/helpers/fireBase/fireBaseKey.dart';
 import 'package:weatherai/core/utilies/variables.dart';
+import 'package:weatherai/features/home/presentation/screen/Home.dart';
+import 'package:weatherai/features/onBoarding/onBoarding.dart';
 import 'AiWeather.dart';
 import 'config/bloc_Observer.dart';
 import 'firebase_options.dart';
@@ -21,6 +24,8 @@ void main()async {
 
  di.init();
 
+ DioHelper.initialDio();
+
  Bloc.observer = MyBlocObserver();
 
  checkLogin();
@@ -32,8 +37,8 @@ void main()async {
 void checkLogin()async{
   String uid= await CacheHelper.getData(key: FireBaseKeys.uid)??"";
   if(uid.isNotEmpty){
-    Variables.isUserLogin=true;
+    Variables.screen=Home();
   }else{
-    Variables.isUserLogin=false;
+    Variables.screen=OnBoarding();
   }
 }
