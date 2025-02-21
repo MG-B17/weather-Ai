@@ -90,6 +90,72 @@ class _CompleteSingUpState extends State<CompleteSingUp> {
                             validation:(value){
                               if(value!.isEmpty){
                                 return Strings.birthDateValidate;
+=======
+    return BlocProvider(
+      create: (context)=>di.sl<SingUpCubit>(),
+      child: BlocConsumer<SingUpCubit,SingUpStates>(
+        listener: (context,state){
+          if(state is SingUpSuccess){
+            PushAndRemoveNavigation().navigation(context: context, screen: Home());
+          }else if (state is SingUpFail){
+            showDialog(context: context, builder:(context)=>errorAlertDialog(
+                errorTittle:Strings.singUpError, errorMessage: state.message),
+              barrierColor: ColorManager.primaryColor!.withOpacity(.7)
+            );
+          }
+        },
+        builder: (context,state){
+          return Scaffold(
+            appBar: AppBar(
+              leading: InkWell(
+                onTap: (){
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons.arrow_back,
+                  color: ColorManager.textColor,
+                  size: 24.h,
+                ),
+              ),
+            ),
+            body: Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.h,horizontal: 20.h),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Logo(),
+                    Form(
+                      key: formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SingUpStatement(),
+                          //userName
+                          CustomTextForm(
+                              name: "Birth Date",
+                              controller:birthDateController ,
+                              keyboardType: TextInputType.none,
+                              onTap: (){
+                                showDatePicker(
+                                    context: context,
+                                  firstDate: DateTime(1960),
+                                  lastDate:DateTime(2008),
+                                  initialDate: DateTime(2000)
+                                ).then((value){
+                                  setState(() {
+                                    final f = new DateFormat.yMMMMd();
+                                    birthDateController.text= f.format(value!);
+                                    print(birthDateController.text);
+                                  });
+                                });
+                              },
+                              onFiledSubmitted: (value){},
+                              validation:(value){
+                                if(value!.isEmpty){
+                                  return Strings.birthDateValidate;
+                                }
+                                return null;
                               }
                               return null;
                             }

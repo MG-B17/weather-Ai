@@ -28,7 +28,7 @@ class CustomTextForm extends StatelessWidget {
     this.onTap,
     required this.preFixICon,
     this.sufFixICon,
-
+    this.onTap
   });
 
   @override
