@@ -36,8 +36,8 @@ class OnBoarding extends StatelessWidget {
                 Button(
                     text: Strings.login,
                     width: double.infinity,
-                    onTap: (){
-                      PushNavigation().navigation(context: context, screen: Login());
+                    onTap: ()async{
+                     PushNavigation().navigation(context: context, screen: Login());
                     }
                 ),
               ],

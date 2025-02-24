@@ -9,6 +9,12 @@ import 'package:weatherai/features/auth/login/data/remoteData/remoteData.dart';
 import 'package:weatherai/features/auth/login/data/repo_Impl/repo_Impl.dart';
 import 'package:weatherai/features/auth/login/domain/usecase/loginUseCase.dart';
 import 'package:weatherai/features/auth/login/presentation/controller/cubit.dart';
+import 'package:weatherai/features/home/data/remoteData/remoteWeatherData.dart';
+import 'package:weatherai/features/home/data/rep_impl/weatherRepo_Imple.dart';
+import 'package:weatherai/features/home/domain/repo/repo.dart';
+import 'package:weatherai/features/home/domain/usecase/getCurrentWeatherUseCase.dart';
+import 'package:weatherai/features/home/domain/usecase/getForecastWeatherUseCase.dart';
+import 'package:weatherai/features/home/presentation/controller/cubit.dart';
 
 import '../../features/auth/Sing Up/data/repoImpl/singUpRepoImpl.dart';
 import '../../features/auth/login/domain/repo/repo.dart';
@@ -19,18 +25,23 @@ Future<void> init()async{
   //cubit
   sl.registerFactory(()=>LoginCubit(loginUseCase: sl()));
   sl.registerFactory(()=>SingUpCubit(singUpUseCase: sl()));
+  sl.registerFactory(()=>WeatherCubit(getCurrentWeatherUSeCase: sl(),getForecastWeatherUSeCase: sl())..getCurrentWeather());
 
   //useCase
   sl.registerLazySingleton<LoginUseCase>(()=>LoginUseCase(repo: sl()));
   sl.registerLazySingleton<SingUpUseCase>(()=>SingUpUseCase(singUpRepo: sl()));
+  sl.registerLazySingleton<GetCurrentWeatherUSeCase>(()=>GetCurrentWeatherUSeCase(weatherRepo: sl()));
+  sl.registerLazySingleton<GetForecastWeatherUSeCase>(()=>GetForecastWeatherUSeCase(weatherRepo: sl()));
 
   //repo
   sl.registerLazySingleton<Repo>(()=>RepoImpl(networkInfo: sl(), remoteData:sl()));
   sl.registerLazySingleton<SingUpRepo>(()=>SingUpRepoImpl(singUpRemote: sl(), networkInfo: sl()));
+  sl.registerLazySingleton<WeatherRepo>(()=>CurrentWeatherImpel(networkInfo: sl(), baseRemoteWeatherData: sl()));
 
   //remoteData
   sl.registerLazySingleton<RemoteData>(()=>RemoteDataLogin());
   sl.registerLazySingleton<SingUpRemote>(()=>SingUpRemoteImpl());
+  sl.registerLazySingleton<BaseRemoteWeatherData>(()=>RemoteWeatherData());
 
   //other
   sl.registerLazySingleton<NetworkInfo>(()=>NetworkInfoImpl(internetConnection: InternetConnection()));

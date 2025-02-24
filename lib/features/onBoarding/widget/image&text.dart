@@ -14,27 +14,30 @@ class ImageAndText extends StatelessWidget {
         Container(
           foregroundDecoration: BoxDecoration(
               gradient: LinearGradient(
-                colors:[
-                  ColorManager.primaryColor!,
-                  ColorManager.primaryColor!.withOpacity(0.0),
+                colors: [
+                  Color.fromRGBO(8, 36,79, 1),
+                  Color.fromRGBO(19, 76,181, 1),
+                  Color.fromRGBO(11, 66,171, 1),
                 ],
                 begin: Alignment.bottomCenter,
                 end: Alignment.center,
-                stops: const [0.14, 0.4],
+                stops: const [0.15, 0.7,1],
               )
           ),
-          child: Image(
-            image:const AssetImage("assets/images/onBoarding.jpg"),
-            width: double.infinity,
-            height: 530.h,
-            fit: BoxFit.cover,
+          child: Center(
+            child: Image(
+              image:const AssetImage("assets/images/onBoarding.jpg"),
+              width: double.infinity,
+              height: 530.h,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         Text(
           Strings.onBoardingStatement,
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: ColorManager.textColor,
+            color: ColorManager.myWhite,
             fontWeight: FontWeight.bold,
             fontSize: 18.sp,
           ),

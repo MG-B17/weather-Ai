@@ -19,4 +19,12 @@ class SingUpCubit extends Cubit<SingUpStates>{
    final result= await singUpUseCase(singUpEntity: entity);
    result.fold((failure)=>emit(SingUpFail(message:MapFailureToMessage(failure) )), (_)=>emit(SingUpSuccess()));
   }
+
+
+  bool hidePassword=true;
+
+  void changePassword(){
+    hidePassword=!hidePassword;
+    emit(ChangePassword());
+  }
 }

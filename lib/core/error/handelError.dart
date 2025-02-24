@@ -15,6 +15,8 @@ String MapFailureToMessage(Failure failure) {
       return ErrorMessage.NO_USER_FAILURE_MESSAGE;
     case WrongPasswordFailure:
       return ErrorMessage.WRONG_PASSWORD_FAILURE_MESSAGE;
+    case LocationDisabledFailure:
+      return ErrorMessage.PleaseEnableLoCation;
     default:
       return "Unexpected Error , Please try again later .";
   }

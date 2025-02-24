@@ -22,6 +22,7 @@ class SingUpRepoImpl extends SingUpRepo{
       final response= await singUpRemote.singUp(singUpEntity: singUpEntity);
       print(response.user!.uid);
       singUpRemote.createUser(singUpEntity: singUpEntity, uid: response.user!.uid);
+      CacheHelper.setData(key: FireBaseKeys.uid, value: response.user!.uid);
       return right(response);
       }on WeekPassException{
         return left(WeekPassFailure());

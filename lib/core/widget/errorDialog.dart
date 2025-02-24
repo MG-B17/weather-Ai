@@ -5,8 +5,7 @@ import 'package:weatherai/core/utilies/ColorManager.dart';
 AlertDialog errorAlertDialog ({required String errorTittle,required String errorMessage})
 {
   return AlertDialog(
-    backgroundColor: ColorManager.textColor!.withOpacity(.6),
-    shadowColor: ColorManager.textColor!.withOpacity(.6),
+    backgroundColor: ColorManager.secondaryColor,
     icon: Icon(
       Icons.error_outline,
       color: ColorManager.errorColor,
